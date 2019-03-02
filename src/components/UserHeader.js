@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, memo } from "react";
 import { connect } from "react-redux";
 import { fetchUser } from "actions";
 
@@ -8,7 +8,8 @@ class UserHeader extends Component {
   }
 
   render() {
-    const { userId } = this.props;
+    const { userId, getUser } = this.props;
+    console.log(this.props.userId);
     return (
       <div>
         <h1>{userId}</h1>
@@ -17,7 +18,13 @@ class UserHeader extends Component {
   }
 }
 
+const mapStateToProps = ({ users: { payload: users } }, ownProps) => {
+  return {
+    getUser: users.find(({ id }) => id === ownProps.userId)
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchUser }
 )(UserHeader);

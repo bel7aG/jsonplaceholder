@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case FETCH_POSTS_SUCCESS:
       return {
         loading: false,
-        payload: [...payload],
+        payload: [...payload.payload],
         error: null
       };
 

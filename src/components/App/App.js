@@ -12,16 +12,14 @@ class App extends Component {
 
   renderContent = () => {
     const {
-      jsonPlaceHolder: { loading, payload }
+      posts: { loading, payload }
     } = this.props;
     return (
       <>
         {loading ? <LinearProgress /> : null}
-        {payload.map(post => (
-          <>
-            <UserPost key={post.id} post={post} />
-          </>
-        ))}
+        {payload.map(post => {
+          return <UserPost key={post.id} post={post} />;
+        })}
       </>
     );
   };
@@ -36,10 +34,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ jsonPlaceHolder }) => ({
-  jsonPlaceHolder
-});
-
+const mapStateToProps = ({ jsonPlaceHolder }) => {
+  return {
+    posts: jsonPlaceHolder
+  };
+};
 export default connect(
   mapStateToProps,
   { fetchPosts }

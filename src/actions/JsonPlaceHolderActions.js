@@ -7,8 +7,7 @@ import {
   FETCH_POSTS_FAILURE,
   DELETE_POST_STARTED,
   DELETE_POST_SUCCESS,
-  DELETE_POST_FAILURE,
-  FETCH_USER
+  DELETE_POST_FAILURE
 } from "./types";
 
 export const fetchPosts = () => async dispatch => {
@@ -16,7 +15,6 @@ export const fetchPosts = () => async dispatch => {
   try {
     const response = await jsonPlaceHolder.get(`/posts`);
     const { data } = response;
-    console.log(response);
     NotificationManager.success("okokokok");
     dispatch(fetchPostsSuccess(data));
   } catch (error) {
@@ -30,7 +28,9 @@ const fetchPostsStarted = () => ({
 
 const fetchPostsSuccess = payload => ({
   type: FETCH_POSTS_SUCCESS,
-  payload
+  payload: {
+    payload
+  }
 });
 
 const fetchPostsFailure = error => ({
@@ -44,7 +44,6 @@ export const deletePost = choosenId => async dispatch => {
   dispatch(deletePostStarted());
   try {
     const response = await jsonPlaceHolder.delete(`/posts/${choosenId}`);
-    console.log(response);
     NotificationManager.success("okokokok");
     dispatch(deletePostSuccess(choosenId));
   } catch (error) {
