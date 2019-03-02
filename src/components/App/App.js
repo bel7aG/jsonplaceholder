@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { fetchPosts } from "actions";
 import { UserPost } from "../";
 import { NotificationContainer } from "react-notifications";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 class App extends Component {
   componentDidMount() {
-    console.log(this.props);
     this.props.fetchPosts();
   }
 
@@ -14,15 +14,19 @@ class App extends Component {
     const {
       jsonPlaceHolder: { loading, payload }
     } = this.props;
-    if (loading) {
-      return <h1 style={{ color: "red" }}>Loadingggggg</h1>;
-    } else {
-      return payload.map(post => <UserPost key={post.id} post={post} />);
-    }
+    return (
+      <>
+        {loading ? <LinearProgress /> : null}
+        {payload.map(post => (
+          <>
+            <UserPost key={post.id} post={post} />
+          </>
+        ))}
+      </>
+    );
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="ui relaxed divided list">
         <NotificationContainer />

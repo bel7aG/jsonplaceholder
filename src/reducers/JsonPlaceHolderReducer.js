@@ -4,7 +4,8 @@ import {
   FETCH_POSTS_FAILURE,
   DELETE_POST_STARTED,
   DELETE_POST_SUCCESS,
-  DELETE_POST_FAILURE
+  DELETE_POST_FAILURE,
+  FETCH_USER
 } from "actions/types";
 
 const initialState = {
@@ -45,9 +46,6 @@ export default (state = initialState, action) => {
       };
 
     case DELETE_POST_SUCCESS:
-      console.log(action);
-      console.log(payload);
-      console.log(state);
       return {
         ...state,
         loading: false,
@@ -55,7 +53,6 @@ export default (state = initialState, action) => {
       };
 
     case DELETE_POST_FAILURE:
-      console.log(action);
       return {
         ...state,
         loading: false,

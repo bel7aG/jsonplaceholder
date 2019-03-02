@@ -7,7 +7,8 @@ import {
   FETCH_POSTS_FAILURE,
   DELETE_POST_STARTED,
   DELETE_POST_SUCCESS,
-  DELETE_POST_FAILURE
+  DELETE_POST_FAILURE,
+  FETCH_USER
 } from "./types";
 
 export const fetchPosts = () => async dispatch => {

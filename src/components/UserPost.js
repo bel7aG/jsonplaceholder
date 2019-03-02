@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deletePost } from "actions";
-
+import { UserHeader } from "./";
 class UserPost extends Component {
   handleDeletePost = () => {
     const { dispatch } = this.props;
@@ -24,6 +24,7 @@ class UserPost extends Component {
             <h2>{title}</h2>
             <p>{body}</p>
           </div>
+          <UserHeader userId={this.props.post.userId} />
         </div>
       </div>
     );
